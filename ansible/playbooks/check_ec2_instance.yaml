@@ -1,0 +1,15 @@
+---
+
+  - name: Check EC2 instnaces info
+    hosts: localhost
+    connection: local
+    gather_facts: false
+    tasks:
+    - name: Info about EC2 using ec2_instance_facts
+      ec2_instance_facts:
+        region: us-east-1
+        filters:
+          "tag:env": test
+      register: ec2_info
+    - name: Display output
+      debug: msg="{{sc2_info}}"
